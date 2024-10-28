@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Magic is real</title>
+    <title>Magic is Real</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
-        /* Dark mode styling */
         body {
             background-color: #121212;
             color: #ffffff;
@@ -20,176 +19,131 @@
             overflow: hidden;
         }
 
-        /* Image container */
-        .image-container {
-            text-align: center;
-            margin-bottom: 20px;
-            max-width: 95vw;
-            background-color: lightblue;
-            transition: background-color 0.3s, height 0.3s;
-            overflow: hidden;
-            height: 500px;
-            position: relative;
-        }
-
-        .image-container img {
-            max-width: 100%;
-            height: 100%;
+        /* Navigation Toolbar Container */
+        .nav-toolbar {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 200px;
+            padding: 15px;
+            background-color: rgba(34, 34, 34, 0.8);
             border-radius: 10px;
-            transition: transform 0.3s;
-        }
-
-        /* Content area */
-        #contentArea {
-            border: 2px solid #888888;
-            padding: 20px;
-            overflow-y: auto;
-            overflow-x: hidden;
-            max-height: 56vh;
-            width: 95vw;
-            background-color: #222222;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            color: #ffffff;
-            transition: transform 0.3s;
-        }
-
-        /* Navigation Controls */
-        .nav-controls {
+            text-align: center;
             display: flex;
-            flex-direction: row;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 15px;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
-        .nav-controls button {
+        /* Movement controls in T-shape */
+        .movement-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .nav-button {
             width: 50px;
             height: 50px;
-            font-size: 1.5em;
-            border: none;
-            color: #fff;
             background-color: #444;
-            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.2s;
         }
 
-        .nav-controls button:hover {
-            background-color: #555;
+        /* Color code for directional buttons */
+        .nav-up { background-color: #ff6961; }       /* Red for Up */
+        .nav-down { background-color: #77dd77; }     /* Green for Down */
+        .nav-left { background-color: #779ecb; }     /* Blue for Left */
+        .nav-right { background-color: #fdfd96; }    /* Yellow for Right */
+        .nav-in { background-color: #ffb347; }       /* Orange for In */
+        .nav-out { background-color: #cab2ff; }      /* Purple for Out */
+
+        /* Minimap styling */
+        .minimap {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid #888;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            position: relative;
         }
 
-        /* Custom Cursor */
-        .custom-cursor {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: yellow;
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 1000;
+        /* Trackpad area */
+        .trackpad {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid #888;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
         }
 
-        /* Mini Map */
-        .mini-map {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            width: 150px;
-            height: 150px;
-            background-color: rgba(0, 0, 0, 0.5);
-            border: 2px solid #FFD700;
-            display: none; /* Hidden in portrait */
-            border-radius: 10px;
-            transition: transform 0.3s;
+        /* Adjustable toolbar container */
+        .nav-toolbar.adjustable {
+            resize: both;
+            overflow: auto;
+        }
+
+        /* Adjust transparency and positioning controls */
+        .control-panel {
+            margin-top: 10px;
         }
     </style>
 </head>
 
 <body>
-    <div class="image-container" id="imageContainer">
-        <img src="BS_1-1.png" alt="Backup Strats Image" />
-    </div>
+    <div class="nav-toolbar adjustable" id="navToolbar">
+        <div class="movement-controls">
+            <button class="nav-button nav-up" onclick="move('up')">^</button>
+            <button class="nav-button nav-left" onclick="move('left')"><</button>
+            <button class="nav-button nav-right" onclick="move('right')">></button>
+            <button class="nav-button nav-down" onclick="move('down')">v</button>
+            <button class="nav-button nav-in" onclick="move('in')">+</button>
+            <button class="nav-button nav-out" onclick="move('out')">-</button>
+        </div>
 
-    <div id="contentArea">
-        <h1>BackupStrats.com</h1>
-        <p>Players, creators and all those who inhabit the world</p>
-        <hr>
-        <div class="contact-info">
-            <p>Matrix.org: <a href="https://matrix.to/#/@fightcorruption:matrix.org">https://matrix.to/#/@fightcorruption:matrix.org</a></p>
+        <div class="minimap" id="minimap">Minimap</div>
+        <div class="trackpad" id="trackpad">Trackpad</div>
+
+        <div class="control-panel">
+            <label for="toolbarSize">Size: </label>
+            <input type="range" id="toolbarSize" min="50" max="300" value="200">
+            <label for="toolbarOpacity">Opacity: </label>
+            <input type="range" id="toolbarOpacity" min="0.2" max="1" step="0.1" value="0.8">
         </div>
     </div>
 
-    <!-- Navigation Controls -->
-    <div class="nav-controls">
-        <button id="leftBtn"><</button>
-        <button id="rightBtn">></button>
-        <button id="upBtn">^</button>
-        <button id="downBtn">v</button>
-        <button id="inBtn">+</button>
-        <button id="outBtn">-</button>
-    </div>
-
-    <!-- Custom Cursor -->
-    <div class="custom-cursor" id="customCursor"></div>
-
-    <!-- Mini Map -->
-    <div class="mini-map" id="miniMap"></div>
-
     <script>
-        // Custom cursor movement
-        const customCursor = document.getElementById('customCursor');
-        let cursorX = window.innerWidth / 2;
-        let cursorY = window.innerHeight / 2;
+        // Function to handle movement
+        function move(direction) {
+            console.log(`Move: ${direction}`);
+            // Logic to move in the 3D world could be added here
+        }
 
-        document.addEventListener('mousemove', (e) => {
-            cursorX = e.pageX;
-            cursorY = e.pageY;
-            customCursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+        // Resize toolbar based on slider
+        document.getElementById('toolbarSize').addEventListener('input', function() {
+            const toolbar = document.getElementById('navToolbar');
+            const size = this.value + 'px';
+            toolbar.style.width = size;
+            toolbar.style.height = size;
         });
 
-        // Trackpad simulation for mobile
-        let trackpadActive = false;
-        document.addEventListener('touchmove', (e) => {
-            if (!trackpadActive) return;
-            cursorX += e.touches[0].movementX * 0.1;
-            cursorY += e.touches[0].movementY * 0.1;
-            customCursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+        // Change toolbar opacity based on slider
+        document.getElementById('toolbarOpacity').addEventListener('input', function() {
+            const toolbar = document.getElementById('navToolbar');
+            toolbar.style.backgroundColor = `rgba(34, 34, 34, ${this.value})`;
         });
-
-        // Mini Map Toggle (Landscape/Portrait)
-        const miniMap = document.getElementById('miniMap');
-        function toggleMiniMap() {
-            if (window.innerWidth > window.innerHeight) {
-                miniMap.style.display = 'block';
-            } else {
-                miniMap.style.display = 'none';
-            }
-        }
-        window.addEventListener('resize', toggleMiniMap);
-        toggleMiniMap();
-
-        // Navigation button events
-        function navigate(direction) {
-            console.log(`Moving ${direction}`);
-            // Additional 3D navigation code goes here.
-        }
-        
-        document.getElementById('leftBtn').addEventListener('click', () => navigate('left'));
-        document.getElementById('rightBtn').addEventListener('click', () => navigate('right'));
-        document.getElementById('upBtn').addEventListener('click', () => navigate('up'));
-        document.getElementById('downBtn').addEventListener('click', () => navigate('down'));
-        document.getElementById('inBtn').addEventListener('click', () => navigate('in'));
-        document.getElementById('outBtn').addEventListener('click', () => navigate('out'));
-
-        // Placeholder random color function for fun
-        function getRandomColor() {
-            const colors = ['#FFADAD', '#FFD6A5', '#FDFFB6', '#CAFFBF', '#9BF6FF', '#A0C4FF', '#BDB2FF', '#FFC6FF'];
-            return colors[Math.floor(Math.random() * colors.length)];
-        }
-        
-        // Mini-map updates here with 3D tracking logic
     </script>
 </body>
 </html>
