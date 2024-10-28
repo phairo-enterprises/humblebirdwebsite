@@ -6,7 +6,7 @@
     <title>Magic is real</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
-        /* Dark mode magic with a mystical twist */
+        /* Dark mode styling */
         body {
             background-color: #121212;
             color: #ffffff;
@@ -17,87 +17,92 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            overflow: hidden; /* Disable scrolling */
+            overflow: hidden;
         }
 
         /* Image container */
         .image-container {
             text-align: center;
             margin-bottom: 20px;
-            max-width: 95vw; /* Adjusts width to viewport */
-            background-color: lightblue; /* Initial background color */
-            transition: background-color 0.3s, height 0.3s; /* Smooth transition for color change */
-            overflow: hidden; /* Hide the overflow content */
-            height: 500px; /* Initial height of the image container */
+            max-width: 95vw;
+            background-color: lightblue;
+            transition: background-color 0.3s, height 0.3s;
+            overflow: hidden;
+            height: 500px;
             position: relative;
         }
 
-        /* Responsive image styling */
         .image-container img {
-            max-width: 100%; /* Ensures image is not larger than container */
-            height: 100%; /* Fixed height for image */
-            border-radius: 10px; /* Optional: Adds rounded corners to the image */
-            transition: transform 0.3s; /* Smooth transition for image transformation */
+            max-width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s;
         }
 
-        /* Content area as a portal to the magical world */
+        /* Content area */
         #contentArea {
             border: 2px solid #888888;
             padding: 20px;
             overflow-y: auto;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-x: hidden;
             max-height: 56vh;
             width: 95vw;
             background-color: #222222;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             color: #ffffff;
-            transition: transform 0.3s; /* Smooth transition for content transformation */
+            transition: transform 0.3s;
         }
 
-        /* Styling for the mystical headings */
-        h1, h2, h3, h4 {
-            color: #FFD700; /* Golden text for headings */
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
+        /* Navigation Controls */
+        .nav-controls {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
         }
 
-        /* Enhancing the paragraphs with a touch of elegance */
-        p {
-            font-size: 1.1em;
-            line-height: 1.6;
+        .nav-controls button {
+            width: 50px;
+            height: 50px;
+            font-size: 1.5em;
+            border: none;
+            color: #fff;
+            background-color: #444;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s;
         }
 
-        /* Adding a touch of enigma to horizontal rule */
-        hr {
-            border: 1px solid #FFD700;
-            margin: 20px 0;
+        .nav-controls button:hover {
+            background-color: #555;
         }
 
-        /* Style for strong elements to make them stand out */
-        strong {
-            color: #FF4500; /* Vivid orange for bold text */
+        /* Custom Cursor */
+        .custom-cursor {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: yellow;
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
         }
 
-        /* Italic texts are subtly highlighted */
-        em {
-            color: #ADFF2F; /* Green text for emphasis */
-        }
-
-        /* Contact info styling */
-        .contact-info {
-            margin-top: 20px;
-            font-style: italic;
-            color: #9ACD32; /* Yellow-green for contact info */
-        }
-
-        /* Disable zoom */
-        body {
-            touch-action: manipulation;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
+        /* Mini Map */
+        .mini-map {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 2px solid #FFD700;
+            display: none; /* Hidden in portrait */
+            border-radius: 10px;
+            transition: transform 0.3s;
         }
     </style>
 </head>
@@ -110,66 +115,81 @@
     <div id="contentArea">
         <h1>BackupStrats.com</h1>
         <p>Players, creators and all those who inhabit the world</p>
-
-        <p>Today, we stand at a pivotal moment in history, on the brink of a transformation <em>decades</em> in the making. The groundwork is laid, the plans are drawn, and a new era is within our reach: an era where you are not merely participants, but the <strong>architects</strong> of your destiny.</p>
-
-        <p>For too long, we've been entangled in a system that veiled its intentions, treating us not as living beings but mere extensions of its vast commercial empire. But no more. I stand before you, not just with a promise, but with a plan born from the principles of the <strong>U.S. Constitution</strong>, fused with the <em>hard work</em> of reimagining our future.</p>
-
-        <p>The path has been arduous, and the most challenging part is behind us. The complex systems that once bound us are beginning to unravel. The entities that saw us as subjects are poised for transformation. We are on the cusp of a new reality, but the journey is not yet complete.</p>
-
-        <p>Now, we seek the best and most dedicated engineers and artists to join us. Your skills, passion, and creativity are essential in solidifying the work that is ready for production. Together, we will shape this new era, turning vision into reality.</p>
-
-        <p>This call is not just for participation, but for commitment to a cause greater than ourselves, a cause where each one of us can contribute to a future where we all stand as <strong>free men and women</strong>, paramount in our own lives.</p>
-
-        <p>Welcome to the future... a secret mention to Overworld Radio.</p>
-        
         <hr>
         <div class="contact-info">
-            <p>For contact inquiries, we only operate via private messaging systems of the highest standards. For now, we use the official Matrix server for Element. Soon, we will operate our own private server to maintain even higher standards.</p>
             <p>Matrix.org: <a href="https://matrix.to/#/@fightcorruption:matrix.org">https://matrix.to/#/@fightcorruption:matrix.org</a></p>
         </div>
-        <h2>BackupStrats.com</h2>
-        <p>...the anticipation grows. The initial announcement is just a glimpse into the horizon of our ambition. Now, the quest that awaits on BackupStrats.com</p>
     </div>
 
+    <!-- Navigation Controls -->
+    <div class="nav-controls">
+        <button id="leftBtn"><</button>
+        <button id="rightBtn">></button>
+        <button id="upBtn">^</button>
+        <button id="downBtn">v</button>
+        <button id="inBtn">+</button>
+        <button id="outBtn">-</button>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="customCursor"></div>
+
+    <!-- Mini Map -->
+    <div class="mini-map" id="miniMap"></div>
+
     <script>
-        const imageContainer = document.getElementById('imageContainer');
-        const contentArea = document.getElementById('contentArea');
-        const img = imageContainer.querySelector('img');
-        let isImageShrunk = false;
+        // Custom cursor movement
+        const customCursor = document.getElementById('customCursor');
+        let cursorX = window.innerWidth / 2;
+        let cursorY = window.innerHeight / 2;
 
-        // Scroll event handler to trigger image shrink
-        contentArea.addEventListener('scroll', function() {
-            const scrollPosition = contentArea.scrollTop;
-            const threshold = contentArea.scrollHeight * 0.5;
-
-            if (scrollPosition > threshold && !isImageShrunk) {
-                imageContainer.style.height = '350px';
-                img.style.transform = 'translateY(-30%)';
-                contentArea.style.transform = 'translateY(-150px)';
-                isImageShrunk = true;
-            }
+        document.addEventListener('mousemove', (e) => {
+            cursorX = e.pageX;
+            cursorY = e.pageY;
+            customCursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
         });
 
-        // Click event to reset the image and text position
-        imageContainer.addEventListener('click', function() {
-            if (isImageShrunk) {
-                imageContainer.style.height = '500px';
-                img.style.transform = 'translateY(0)';
-                isImageShrunk = false;
-            }
+        // Trackpad simulation for mobile
+        let trackpadActive = false;
+        document.addEventListener('touchmove', (e) => {
+            if (!trackpadActive) return;
+            cursorX += e.touches[0].movementX * 0.1;
+            cursorY += e.touches[0].movementY * 0.1;
+            customCursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
         });
 
-        // Function to generate a random color
+        // Mini Map Toggle (Landscape/Portrait)
+        const miniMap = document.getElementById('miniMap');
+        function toggleMiniMap() {
+            if (window.innerWidth > window.innerHeight) {
+                miniMap.style.display = 'block';
+            } else {
+                miniMap.style.display = 'none';
+            }
+        }
+        window.addEventListener('resize', toggleMiniMap);
+        toggleMiniMap();
+
+        // Navigation button events
+        function navigate(direction) {
+            console.log(`Moving ${direction}`);
+            // Additional 3D navigation code goes here.
+        }
+        
+        document.getElementById('leftBtn').addEventListener('click', () => navigate('left'));
+        document.getElementById('rightBtn').addEventListener('click', () => navigate('right'));
+        document.getElementById('upBtn').addEventListener('click', () => navigate('up'));
+        document.getElementById('downBtn').addEventListener('click', () => navigate('down'));
+        document.getElementById('inBtn').addEventListener('click', () => navigate('in'));
+        document.getElementById('outBtn').addEventListener('click', () => navigate('out'));
+
+        // Placeholder random color function for fun
         function getRandomColor() {
-            const colors = ['#FFADAD', '#FFD6A5', '#FDFFB6', '#CAFFBF', '#9BF6FF', '#A0C4FF', '#BDB2FF', '#FFC6FF']; // Array of colors
+            const colors = ['#FFADAD', '#FFD6A5', '#FDFFB6', '#CAFFBF', '#9BF6FF', '#A0C4FF', '#BDB2FF', '#FFC6FF'];
             return colors[Math.floor(Math.random() * colors.length)];
         }
-
-        // Change background color on scroll
-        contentArea.addEventListener('scroll', function() {
-            imageContainer.style.backgroundColor = getRandomColor();
-        });
+        
+        // Mini-map updates here with 3D tracking logic
     </script>
 </body>
 </html>
