@@ -5,123 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Magic is Real - BackupStrats.com</title>
     <style>
-        /* Dark mode magic with a mystical twist */
         body {
             background-color: #121212;
             color: #ffffff;
             font-family: 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
             height: 100vh;
-            margin: 0;
-            overflow: hidden; /* Disable scrolling */
-            touch-action: manipulation;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
+            overflow: hidden;
         }
 
-        /* Image container */
-        .image-container {
-            text-align: center;
-            margin-bottom: 20px;
-            max-width: 95vw; /* Adjusts width to viewport */
-            background-color: lightblue; /* Initial background color */
-            transition: background-color 0.3s, height 0.3s; /* Smooth transition for color change */
-            overflow: hidden; /* Hide the overflow content */
-            height: 500px; /* Initial height of the image container */
-            position: relative;
-        }
-
-        /* Responsive image styling */
-        .image-container img {
-            max-width: 100%; /* Ensures image is not larger than container */
-            height: 100%; /* Fixed height for image */
-            border-radius: 10px; /* Optional: Adds rounded corners to the image */
-            transition: transform 0.3s; /* Smooth transition for image transformation */
-        }
-
-        /* Content area as a portal to the magical world */
         #contentArea {
-            border: 2px solid #888888;
+            flex: 1;
             padding: 20px;
             overflow-y: auto;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-            max-height: 56vh;
-            width: 95vw;
             background-color: #222222;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            color: #ffffff;
-            transition: transform 0.3s; /* Smooth transition for content transformation */
         }
 
-        /* Styling for the mystical headings */
         h1, h2, h3, h4 {
-            color: #FFD700; /* Golden text for headings */
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
+            color: #FFD700;
         }
 
-        /* Enhancing the paragraphs with a touch of elegance */
-        p {
-            font-size: 1.1em;
-            line-height: 1.6;
-        }
-
-        /* Adding a touch of enigma to horizontal rule */
-        hr {
-            border: 1px solid #FFD700;
-            margin: 20px 0;
-        }
-
-        /* Style for strong elements to make them stand out */
         strong {
-            color: #FF4500; /* Vivid orange for bold text */
+            color: #FF4500;
         }
 
-        /* Italic texts are subtly highlighted */
         em {
-            color: #ADFF2F; /* Green text for emphasis */
+            color: #ADFF2F;
         }
 
-        /* Contact info styling */
         .contact-info {
             margin-top: 20px;
             font-style: italic;
-            color: #9ACD32; /* Yellow-green for contact info */
+            color: #9ACD32;
         }
 
-        /* Navigation Toolbar Container */
-        .nav-toolbar {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 200px;
-            padding: 15px;
+        #navToolbar {
             background-color: rgba(34, 34, 34, 0.8);
-            border-radius: 10px;
-            text-align: center;
+            padding: 10px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            justify-content: space-between;
         }
 
-        /* Movement controls in T-shape */
         .movement-controls {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 5px;
-            margin-bottom: 10px;
         }
 
         .nav-button {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             background-color: #444;
             color: white;
             font-weight: bold;
@@ -129,60 +65,36 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.2s;
         }
 
-        /* Color code for directional buttons */
-        .nav-up { background-color: #ff6961; }       /* Red for Up */
-        .nav-down { background-color: #77dd77; }     /* Green for Down */
-        .nav-left { background-color: #779ecb; }     /* Blue for Left */
-        .nav-right { background-color: #fdfd96; }    /* Yellow for Right */
-        .nav-in { background-color: #ffb347; }       /* Orange for In */
-        .nav-out { background-color: #cab2ff; }      /* Purple for Out */
-
-        /* Minimap styling */
-        .minimap {
-            width: 100px;
-            height: 100px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border: 1px solid #888;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            position: relative;
-        }
-
-        /* Trackpad area */
-        .trackpad {
-            width: 80px;
-            height: 80px;
+        #minimap {
+            width: 200px;
+            height: 200px;
             background-color: rgba(255, 255, 255, 0.1);
             border: 1px solid #888;
-            border-radius: 5px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
+            margin-left: 10px;
         }
 
-        /* Adjustable toolbar container */
-        .nav-toolbar.adjustable {
-            resize: both;
-            overflow: auto;
-        }
+        @media (orientation: landscape) {
+            body {
+                flex-direction: row;
+            }
 
-        /* Adjust transparency and positioning controls */
-        .control-panel {
-            margin-top: 10px;
+            #navToolbar {
+                width: 300px;
+                flex-direction: column;
+            }
+
+            #minimap {
+                width: 100%;
+                height: 200px;
+                margin-left: 0;
+                margin-top: 10px;
+            }
         }
     </style>
 </head>
-
 <body>
-    <div class="image-container" id="imageContainer">
-        <img src="BS_1-1.png" alt="Backup Strats Image" />
-    </div>
-
     <div id="contentArea">
         <h1>BackupStrats.com</h1>
         <p>Players, creators and all those who inhabit the world</p>
@@ -202,91 +114,72 @@
         <hr>
         <div class="contact-info">
             <p>For contact inquiries, we only operate via private messaging systems of the highest standards. For now, we use the official Matrix server for Element. Soon, we will operate our own private server to maintain even higher standards.</p>
-            <p>Matrix.org: <a href="https://matrix.to/#/@fightcorruption:matrix.org">https://matrix.to/#/@fightcorruption:matrix.org</a></p>
+            <p>Matrix.org: <a href="https://matrix.to/#/@fightcorruption:matrix.org" style="color: #9ACD32;">https://matrix.to/#/@fightcorruption:matrix.org</a></p>
         </div>
         <h2>BackupStrats.com</h2>
         <p>...the anticipation grows. The initial announcement is just a glimpse into the horizon of our ambition. Now, the quest that awaits on BackupStrats.com</p>
     </div>
 
-    <div class="nav-toolbar adjustable" id="navToolbar">
+    <div id="navToolbar">
         <div class="movement-controls">
-            <button class="nav-button nav-up" onclick="move('up')">^</button>
-            <button class="nav-button nav-left" onclick="move('left')"><</button>
-            <button class="nav-button nav-right" onclick="move('right')">></button>
-            <button class="nav-button nav-down" onclick="move('down')">v</button>
-            <button class="nav-button nav-in" onclick="move('in')">+</button>
-            <button class="nav-button nav-out" onclick="move('out')">-</button>
+            <button class="nav-button" style="grid-column: 2;" onclick="move(0,1,0)">↑</button>
+            <button class="nav-button" onclick="move(-1,0,0)">←</button>
+            <button class="nav-button" onclick="move(0,0,0)">·</button>
+            <button class="nav-button" onclick="move(1,0,0)">→</button>
+            <button class="nav-button" style="grid-column: 2;" onclick="move(0,-1,0)">↓</button>
+            <button class="nav-button" onclick="move(0,0,1)">Fly</button>
+            <button class="nav-button" onclick="move(0,0,-1)">Dive</button>
         </div>
-
-        <div class="minimap" id="minimap">Minimap</div>
-        <div class="trackpad" id="trackpad">Trackpad</div>
-
-        <div class="control-panel">
-            <label for="toolbarSize">Size: </label>
-            <input type="range" id="toolbarSize" min="50" max="300" value="200">
-            <label for="toolbarOpacity">Opacity: </label>
-            <input type="range" id="toolbarOpacity" min="0.2" max="1" step="0.1" value="0.8">
-        </div>
+        <div id="minimap"></div>
     </div>
 
     <script>
-        const imageContainer = document.getElementById('imageContainer');
-        const contentArea = document.getElementById('contentArea');
-        const img = imageContainer.querySelector('img');
-        let isImageShrunk = false;
+        let currentPosition = [0, 0, 0];
+        const visitedPositions = new Set(['0,0,0']);
 
-        // Scroll event handler to trigger image shrink
-        contentArea.addEventListener('scroll', function() {
-            const scrollPosition = contentArea.scrollTop;
-            const threshold = contentArea.scrollHeight * 0.5;
-
-            if (scrollPosition > threshold && !isImageShrunk) {
-                imageContainer.style.height = '350px';
-                img.style.transform = 'translateY(-30%)';
-                contentArea.style.transform = 'translateY(-150px)';
-                isImageShrunk = true;
-            }
-        });
-
-        // Click event to reset the image and text position
-        imageContainer.addEventListener('click', function() {
-            if (isImageShrunk) {
-                imageContainer.style.height = '500px';
-                img.style.transform = 'translateY(0)';
-                isImageShrunk = false;
-            }
-        });
-
-        // Function to generate a random color
-        function getRandomColor() {
-            const colors = ['#FFADAD', '#FFD6A5', '#FDFFB6', '#CAFFBF', '#9BF6FF', '#A0C4FF', '#BDB2FF', '#FFC6FF']; // Array of colors
-            return colors[Math.floor(Math.random() * colors.length)];
+        function move(x, y, z) {
+            currentPosition[0] += x;
+            currentPosition[1] += y;
+            currentPosition[2] += z;
+            visitedPositions.add(currentPosition.join(','));
+            updateMinimap();
+            console.log(`Current position: (${currentPosition.join(',')})`);
         }
 
-        // Change background color on scroll
-        contentArea.addEventListener('scroll', function() {
-            imageContainer.style.backgroundColor = getRandomColor();
-        });
+        function updateMinimap() {
+            const minimap = document.getElementById('minimap');
+            minimap.innerHTML = '';
+            const size = 5;
+            const boxSize = 20;
+            const center = Math.floor(size / 2);
 
-        // Function to handle movement
-        function move(direction) {
-            console.log(`Move: ${direction}`);
-            // Logic to move in the 3D world could be added here
+            for (let x = 0; x < size; x++) {
+                for (let y = 0; y < size; y++) {
+                    for (let z = 0; z < size; z++) {
+                        const box = document.createElement('div');
+                        box.style.position = 'absolute';
+                        box.style.width = `${boxSize}px`;
+                        box.style.height = `${boxSize}px`;
+                        box.style.left = `${(x - center) * boxSize + 100}px`;
+                        box.style.top = `${(y - center) * boxSize + 100}px`;
+                        box.style.transform = `translateZ(${(z - center) * boxSize}px)`;
+                        box.style.backgroundColor = getBoxColor(x - center, y - center, z - center);
+                        box.style.opacity = '0.7';
+                        minimap.appendChild(box);
+                    }
+                }
+            }
         }
 
-        // Resize toolbar based on slider
-        document.getElementById('toolbarSize').addEventListener('input', function() {
-            const toolbar = document.getElementById('navToolbar');
-            const size = this.value + 'px';
-            toolbar.style.width = size;
-            toolbar.style.height = size;
-        });
+        function getBoxColor(x, y, z) {
+            const pos = [currentPosition[0] + x, currentPosition[1] + y, currentPosition[2] + z];
+            if (pos[0] === 0 && pos[1] === 0 && pos[2] === 0) return 'blue';
+            if (pos[0] === currentPosition[0] && pos[1] === currentPosition[1] && pos[2] === currentPosition[2]) return 'red';
+            if (visitedPositions.has(pos.join(','))) return 'green';
+            return 'gray';
+        }
 
-        // Change toolbar opacity based on slider
-        document.getElementById('toolbarOpacity').addEventListener('input', function() {
-            const toolbar = document.getElementById('navToolbar');
-            toolbar.style.backgroundColor = `rgba(34, 34, 34, ${this.value})`;
-        });
+        updateMinimap();
     </script>
 </body>
 </html>
